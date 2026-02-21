@@ -1003,7 +1003,7 @@ function deleteAlbum(name) {
         setFilter('all', 'All Media');
     }
     renderFolderSidebar();
-    showToast(`🗑️ Album "${name}" deleted`);
+    // showToast(`🗑️ Album "${name}" deleted`);
 }
 
 
