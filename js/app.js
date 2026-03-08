@@ -916,10 +916,20 @@ document.getElementById('bulkCancelBtn').addEventListener('click', exitBulkMode)
 
 document.getElementById('bulkDownloadBtn').addEventListener('click', () => {
     if (!State.selectedIds.size) return;
+    
+    // Browsers often block multiple simultaneous downloads.
+    // Adding a slight delay between each download helps bypass this restriction.
+    let delay = 0;
     State.selectedIds.forEach(id => {
         const item = MEDIA_CATALOGUE.find(m => m.id === id);
-        if (item) downloadFile(item.src, item.filename);
+        if (item) {
+            setTimeout(() => {
+                downloadFile(item.src, item.filename);
+            }, delay);
+            delay += 300; // 300ms gap between downloads
+        }
     });
+    
     showToast(`⬇️ Downloading ${State.selectedIds.size} files…`);
 });
 
