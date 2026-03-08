@@ -513,7 +513,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(0, 245, 255, 0.08);
+  background: rgba(0, 245, 255, 0.08); /* slightly transparent */
   border: 1px solid var(--accent-glow);
   border-radius: 12px;
   padding: 10px 18px;
@@ -521,7 +521,17 @@ body {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--accent);
-  backdrop-filter: blur(10px);
+  
+  /* Make the bar sticky */
+  position: sticky;
+  top: calc(var(--navbar-h) + 16px);
+  z-index: 1020;
+  
+  /* Fallback opaque background in case blur isn't supported */
+  background-color: rgba(10, 20, 25, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ─────────────────────────────────────────────
